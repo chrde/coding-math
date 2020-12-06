@@ -1,5 +1,6 @@
 (in-package #:coding-math)
 
+;; math
 (defun clamp (n min max)
   (max (min max n) min))
 
@@ -15,3 +16,36 @@
 
 (defun lerp (norm min max)
   (+ min (* norm (- max min))))
+
+;; other
+(defun particle-screen-wrap! (p width height)
+  (let ((radius (particle-radius p))
+        (x (particle-x p))
+        (y (particle-y p)))
+    (when (> (- x radius) width)
+      (setf (particle-x p) (- radius)))
+    (when (< (+ x radius) 0)
+      (setf (particle-x p) (+ radius width)))
+    (when (> (- y radius) height)
+      (setf (particle-y p) (- radius)))
+    (when (< (+ y radius) 0)
+      (setf (particle-y p) (+ radius height)))))
+
+(defun particle-screen-bounce! (p width height)
+  (let ((radius (particle-radius p))
+        (x (particle-x p))
+        (y (particle-y p))
+        (bounce (particle-bounce p)))
+    (with-slots ((vel-x x) (vel-y y)) (particle-velocity p)
+      (when (> (+ x radius) width)
+        (setf (particle-x p) (- width radius))
+        (setf vel-x (* bounce vel-x)))
+      (when (< (- x radius) 0)
+        (setf (particle-x p) radius)
+        (setf vel-x (* bounce vel-x)))
+      (when (< (- y radius) 0)
+        (setf (particle-y p) radius)
+        (setf vel-y (* bounce vel-y)))
+      (when (> (+ y radius) height)
+        (setf (particle-y p) (- height radius))
+        (setf vel-y (* bounce vel-y))))))

@@ -27,8 +27,8 @@
 (defun (setf vec-len) (len vec)
   (let ((angle (vec-angle vec)))
     (with-slots (x y) vec
-      (setf  x (* len (cos angle)))
-      (setf  y (* len (sin angle))))))
+      (setf x (* len (cos angle)))
+      (setf y (* len (sin angle))))))
 
 (defun vec-len (vec)
   (with-slots (x y) vec
