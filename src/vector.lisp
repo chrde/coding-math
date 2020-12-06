@@ -1,7 +1,7 @@
 (in-package #:coding-math)
 
 (defstruct (vec (:print-object pprint-vec)
-                (:constructor make-vec (x y)))
+                (:constructor make-vec (&optional (x 0) (y 0))))
   x y)
 
 (defun pprint-vec (v out)
@@ -9,7 +9,7 @@
 
 
 (defun make-vec-la (len angle)
-  (let ((v (make-vec 0 0)))
+  (let ((v (make-vec)))
     (setf (vec-len v) len
           (vec-angle v) angle)
     v))
