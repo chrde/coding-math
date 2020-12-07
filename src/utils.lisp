@@ -17,6 +17,10 @@
 (defun lerp (norm min max)
   (+ min (* norm (- max min))))
 
+(defun map-to (n src-min src-max dest-min dest-max)
+  (lerp (norm n src-min src-max)
+        dest-min dest-max))
+
 ;; other
 (defun particle-screen-wrap! (p width height)
   (let ((radius (particle-radius p))
