@@ -3,7 +3,7 @@
 (defsketch episode-8 ((width 800)
                       (height 800)
                       (pos (loop for i from 1 to 100 collect
-                                 (make-particle (/ width 2) (/ height 3) (+ 1 (random 4)) (* (random 8.0) pi 2) 0.1))))
+                                 (make-particle (/ width 2) (/ height 3) (+ 1 (random 4.0)) (degrees (* (random 1.0) pi 2)) :gravity-y 0.1))))
   (dolist (p pos)
     (particle-update! p)
     (circle (particle-x p) (particle-y p) 10)))

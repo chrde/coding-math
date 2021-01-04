@@ -68,4 +68,3 @@
   (setf (vec-x v) (/ (vec-x v) s)
         (vec-y v) (/ (vec-y v) s)))
 ;; end vec
-

@@ -6,7 +6,9 @@
           (make-particle x y
                          (vec-len velocity)
                          (vec-angle velocity)
-                         0.1 0 (+ (random 15) 5)))))
+                         :gravity-y 0.1
+                         :mass 0
+                         :radius (+ (random 15) 5)))))
 
 (defun rand-velocity ()
   (make-vec-la (+ 5 (random 8))
@@ -15,13 +17,14 @@
 (defsketch wrap-offscreen ((width 800)
                            (height 800)
                            (sun (make-particle
-                                  (/ width 2) (/ height 2) 5 (radians 270) 0 0 50)))
+                                  (/ width 2) (/ height 2) 5 (radians 270)
+                                  :mass 0 :radius 50)))
   (particle-screen-wrap! sun width height)
   (particle-update! sun)
   (with-pen (make-pen :fill +yellow+)
             (circle (particle-x sun) (particle-y sun) (particle-radius sun))))
 
-; (make-instance 'wrap-offscreen)
+;; (make-instance 'wrap-offscreen)
 
 (defsketch fountain ((width 800)
                      (height 800)
@@ -41,10 +44,11 @@
 (defsketch bouncing ((width 800)
                      (height 800)
                      (p (make-particle (/ width 2) (/ height 2)
-                                       5 (* (random 1) pi 2) 0.1)))
+                                       5 (* (random 1.0) pi 2)
+                                       :gravity-y 0.1)))
   (setf (particle-bounce p) -0.9)
   (particle-screen-bounce! p width height)
   (particle-update! p)
   (circle (particle-x p) (particle-y p) (particle-radius p)))
 
-; (make-instance 'bouncing)
+;; (make-instance 'bouncing)

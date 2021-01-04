@@ -11,9 +11,9 @@
 
 (defmethod kit.sdl2:mousemotion-event ((window mini-clamp) ts mask x y xr yr)
   (with-slots (c r) window
-    (setf 
+    (setf
       (first c) (clamp x (first r) (+ (third r) (first r)))
       (second c) (clamp y (second r) (+ (fourth r) (second r)))
       )))
 
-; (make-instance 'mini-clamp)
+;; (make-instance 'mini-clamp)
