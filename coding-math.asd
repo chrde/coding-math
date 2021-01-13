@@ -25,6 +25,7 @@
                                      (:file "episode-20-bezier")
                                      (:file "episode-22-postcards3d")
                                      (:file "episode-23-postcards3d")
+                                     (:file "episode-24-spiral")
                                      (:file "mini-2-lerp")
                                      (:file "mini-3-map")
                                      (:file "mini-clamp")
