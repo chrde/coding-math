@@ -1,7 +1,7 @@
 [
   {
     "name": "REPL",
-    "command": "sbcl --load ~/.vim/plugged/vlime/lisp/start-vlime.lisp --load init.lisp",
+    "command": "sbcl --load /home/chrde/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp --load init.lisp",
     "default": true
   }
 ]

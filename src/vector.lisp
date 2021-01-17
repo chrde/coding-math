@@ -4,6 +4,11 @@
                 (:constructor make-vec (&optional (x 0) (y 0))))
   x y)
 
+(defstruct vec3
+  (x 0)
+  (y 0)
+  (z 0))
+
 (defun pprint-vec (v out)
   (format out "[~A ~A]" (vec-x v) (vec-y v)))
 
@@ -67,4 +72,10 @@
 (defun vec-div! (v s)
   (setf (vec-x v) (/ (vec-x v) s)
         (vec-y v) (/ (vec-y v) s)))
+
+(defun vec3-add! (v1 v2)
+  (incf (vec3-x v1) (vec3-x v2))
+  (incf (vec3-y v1) (vec3-y v2))
+  (incf (vec3-z v1) (vec3-z v2)))
+
 ;; end vec
